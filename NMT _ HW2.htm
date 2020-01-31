@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://www.inf.ed.ac.uk/teaching/courses/mt/hw2.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <title>NMT | HW2</title>
+    
+    <link href="./NMT _ HW2_files/bootstrap.min.css" rel="stylesheet">
+    <link href="./NMT _ HW2_files/dashboard.css" rel="stylesheet">
+    <script type="text/javascript" async="" src="./NMT _ HW2_files/MathJax.js">
+    </script>
+    <script src="./NMT _ HW2_files/jquery.min.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
+    <script src="./NMT _ HW2_files/bootstrap.min.js"></script>
+    
+    <link rel="shortcut icon" href="http://www.inf.ed.ac.uk/images/tinyi.ico" type="image/x-icon">
+  <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+    top: 18px !important;
+    left: 50% !important;
+    margin-left: -100px !important;
+    width: 200px !important;
+    border: 2px rgba(255,255,255,.38) solid !important;
+    border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+    margin-left: 0px !important;
+}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+  
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand">Machine translation</div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li id="main_page_nb"><a href="http://www.inf.ed.ac.uk/teaching/courses/mt/index.html">Overview <span class="sr-only">(current)</span></a></li>
+            <li id="hw1_nb"><a href="http://www.inf.ed.ac.uk/teaching/courses/mt/hw1.html">Homework 1<span class="sr-only">(current)</span></a></li>
+            <li id="hw2_nb" class="active"><a href="http://www.inf.ed.ac.uk/teaching/courses/mt/hw2.html">Homework 2<span class="sr-only">(current)</span></a></li>
+            <li id="syllabus_nb"><a href="http://www.inf.ed.ac.uk/teaching/courses/mt/syllabus.html">2017 Syllabus (planned)</a></li>
+            <li id="2016syllabus_nb"><a href="http://www.inf.ed.ac.uk/teaching/courses/mt/2016syllabus.html">2016 Syllabus (reference)</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="sidebar">
+          <h4>Machine translation</h4>
+          <img src="./NMT _ HW2_files/artsrouni.jpg" class="img-responsive img-rounded">
+          <div class="text-muted"><small>
+            Georges Artsrouni's mechanical brain, a translation device patented in 1933 in France.
+          </small></div>
+          <hr>
+          <ul class="nav nav-sidebar">
+            <li id="main_page"><a href="http://www.inf.ed.ac.uk/teaching/courses/mt/index.html">Overview <span class="sr-only">(current)</span></a></li>
+            <li id="hw1"><a href="http://www.inf.ed.ac.uk/teaching/courses/mt/hw1.html">Homework 1<span class="sr-only">(current)</span></a></li>
+            <li id="hw2" class="active"><a href="http://www.inf.ed.ac.uk/teaching/courses/mt/hw2.html">Homework 2<span class="sr-only">(current)</span></a></li>
+            <li id="syllabus"><a href="http://www.inf.ed.ac.uk/teaching/courses/mt/syllabus.html">2017 Syllabus (planned)</a></li>
+            <li id="2016syllabus"><a href="http://www.inf.ed.ac.uk/teaching/courses/mt/2016syllabus.html">2016 Syllabus (reference)</a></li>
+          </ul>
+        </div>
+        <div class="main">
+          <div class="alert alert-info">
+This assignment is due at 16:00 GMT on 13 March, 2017. Late submissions will
+receive a mark of zero, under the 
+<a href="http://web.inf.ed.ac.uk/infweb/student-services/ito/admin/coursework-projects/late-coursework-extension-requests">Informatics late policy</a>.
+An assignment submitted at 16:01 GMT on 13 March is considered late.
+
+Before you start, please read this page carefully. Submissions that do not
+follow the Ground Rules (at the bottom of the page)
+will receive a mark of zero.
+</div>
+
+<h2 id="neural-machine-translation-small-coursework-2small">Neural machine translation <small>| Coursework 2</small></h2>
+
+<p>We have looked at a variety of probabilistic models of translation. Neural
+machine translation models are the latest in a long line of such models. 
+Notwithstanding any hype you may have heard about them,
+they are still fundamentally probabilistic models of discrete input and output
+sequences. However, they differ from previous generations of probabilistic 
+translation models in some important ways.</p>
+
+<ol>
+  <li>
+    <p>Rather than work with discrete distributions directly parameterized as tables of real numbers, 
+conditional distributions are created by first using a function to <em>encode</em> the 
+discrete input sequence into a vector of continuous values (real numbers). Output 
+is then <em>decoded</em> by sampling from a probability distribution that is 
+constructed as a function of this continuous vector.    </p>
+  </li>
+  <li>
+    <p>The encoder and decoder are simply functions composed from
+simple matrix operations like addition, multiplication, and pointwise 
+transformations such as tanh, exponentiation, and scalar division. For example, the <em>softmax</em>
+operation converts any vector to a probability distribution by exponentiating every element,
+summing the result, and pointwise dividing the exponentiated elements by the sum.</p>
+  </li>
+  <li>
+    <p>These functions are parameterized by matrices,
+which can be learned using gradient-based optimization algorithms.<sup id="fnref:adam"><a href="http://www.inf.ed.ac.uk/teaching/courses/mt/hw2.html#fn:adam" class="footnote">1</a></sup> The gradients
+are computed by differentiating the composed functions using the 
+<a href="https://en.wikipedia.org/wiki/Chain_rule">chain rule for derivatives</a> 
+(aka <a href="https://colah.github.io/posts/2015-08-Backprop/">backpropagation</a>). 
+This is quite easy to automate, so instead of computing the gradients by hand after
+defining the model, we use software libraries for automatic differentiation.<sup id="fnref:autodiff"><a href="http://www.inf.ed.ac.uk/teaching/courses/mt/hw2.html#fn:autodiff" class="footnote">2</a></sup>
+This means that the translation function is implemented declaratively, and much of the difficult 
+work is performed by libraries. The entire function is specified, and then it is
+learned <em>end-to-end</em>: all parameters are trained simultaneously using a single algorithm.
+This is quite different from phrase-based models, in which a sequence of separate models
+are trained individually and then combined into a final model, which must also be trained.</p>
+  </li>
+</ol>
+
+<p>Your task is to implement a neural machine translation pipeline by
+extending a simple baseline model, closely related to the neural language
+model you worked with in <a href="https://github.com/INFR11133/lab2">lab 2</a>. In
+each part of the coursework you will be asked to implement a different
+extension.</p>
+
+<div class="alert alert-danger">
+<b>IMPORTANT</b>: Each extension will require you to train a completely new neural
+machine translation model from scratch. While implementing these changes 
+may only take you a few minutes
+or hours, training the new models will take you <b>A LONG TIME</b>. You might 
+implement something in thirty minutes and leave it to train overnight. 
+Imagine that you return the next morning to find it has a bug! If the next
+morning is the due date, then you'll be in a pickle, but if it's a week before
+the due date, you have time to recover. So, if you
+want to complete this coursework on time, start early. I will not take pity on you
+if you start too late.
+</div>
+
+<h2 id="getting-started-30-marks">Getting started [30 marks]</h2>
+
+<p>If you haven’t yet completed <a href="https://github.com/INFR11133/lab2">lab 2</a>, 
+you should do so now. Don’t simply click through the notebook: familiarize
+yourself with the code and make sure you understand what it does. This 
+coursework uses similar code, and also relies on the same environment
+<code>mtenv</code> that you set up for lab 2, so pay particular attention to the setup
+instructions in the <a href="https://github.com/INFR11133/lab2/blob/master/README.md">readme</a>.</p>
+
+<p>Get the code.</p>
+
+<pre><code>git clone https://github.com/INFR11133/hw2.git
+</code></pre>
+
+<p>You’ll find a directory <code>data</code> containing English and
+Japanese parallel data (from <a href="https://github.com/neubig/nmt-tips">a tutorial</a> that you may find helpful), 
+a <code>model</code> directory containing a pretrained 
+Japanese-to-English neural translation model, and three python files:</p>
+
+<ol>
+  <li>
+    <p><code>nmt_config.py</code> contains configuration parameters, some of which you will 
+be asked to experiment with. In particular, pay close attention
+to the model and training parameters towards the end of the file. You may also
+adjust the <code>gpuid</code> parameter if you have access to a GPU, which will make 
+training times faster (but they will still take considerable time to train, 
+so you should give yourself plenty of time even if you have a GPU).</p>
+  </li>
+  <li>
+    <p><code>nmt_translate.py</code> trains a translation model (if one is not already present)
+and translates test sentences. You will not need to modify this script.</p>
+  </li>
+  <li>
+    <p><code>enc_dec.py</code> contains a simple translation model, specified using the
+<a href="http://docs.chainer.org/en/latest/">chainer</a> library used in lab 2. You will
+need to understand and modify this code as instructed below in order to 
+complete the coursework. Doing so should give you a good idea of how a neural
+machine translation system works, at a level of detail that you can’t get
+from lectures or reading.</p>
+
+    <p>cd translate
+ source activate mtenv</p>
+
+    <p>ipython
+ In [1]: %run nmt_translate.py</p>
+  </li>
+</ol>
+
+<p>You should see a message indicating that a pre-trained model has been loaded.
+To translate using this model, do:</p>
+
+<pre><code>In [2]: _ = predict(s=10000, num=10)
+</code></pre>
+
+<p>This displays translations of the first 10 japanese sentences of the dev set.
+To view predictions on training set do:</p>
+
+<pre><code>In [3]: _ = predict(s=0, num=10)
+</code></pre>
+
+<p>Most of these translations will be poor. To find better translations 
+from this model, we can add filters based on precision and recall of 
+each translation with respect to a reference translation.
+The following statement will only display predictions with <code>recall &gt;= 0.5</code></p>
+
+<pre><code>In [4]: _ = predict(s=10000, num=10, r_filt=.5)  
+</code></pre>
+
+<p>The following statement will only display predictions with <code>precision &gt;= 0.5</code></p>
+
+<pre><code>In [5]: _ = predict(s=10000, num=10, p_filt=.5)
+</code></pre>
+
+<p>This model is still quite basic and trained on a small dataset, so the 
+quality of translations is poor. Your goal will be to see if you can
+improve it.</p>
+
+<p>The current implementation in <code>enc_dec.py</code> encodes the sentence using a 
+bidirectional LSTM: one passing over the input sentence from left-to-right,
+the other from right-to-left. The final states of these LSTMs are 
+concatenated and fed into the decoder, an LSTM that generates the output
+sentence from left-to-right. The <em>encoder</em> is essentially the same as the encoder
+described in Section 3.2 of the <a href="https://arxiv.org/pdf/1409.0473.pdf">2014 paper</a>
+that now forms the basis of most current neural MT models. The <em>decoder</em>
+is simpler than the one in the paper (it doesn’t include the context vector
+described in Section 3.1), but you’ll fix that in Part 3.</p>
+
+<p>Before we go deeply into modifications to the translation model, it is 
+important to understand the baseline implementation, the data we run it on, and
+some of the techniques that are used to make the model run on this data.</p>
+
+<p><strong>Q1. [10 marks]</strong> The file <code>enc_dec.py</code> contains explanatory comments
+to step you through the code. Five of these comments are missing, but they
+are easy to find: search for the string <code>__QUESTION</code> in the file. For each
+of these cases, please (1) add explanatory comments to the code, and (2)
+copy your comments to your answer file. If you aren’t certain what a 
+a particular function does, refer to the <a href="http://docs.chainer.org/en/latest/">chainer documentation</a>.
+(However, explain the code in terms of its effect on the MT model; don’t
+simply copy and paste function descriptions from the documentation).</p>
+
+<p>In preparing the training data, word types that appear only once are 
+replaced by a special token, _UNK. This prevents the vocabulary from 
+growing out of hand, and enables the model to handle unknown words in new 
+test sentences (which may be addressed by postprocessing). But what 
+effect does this replacement have on the properties of our language data?</p>
+
+<p><strong>Q2. [10 marks]</strong> Examine the parallel data and answer the following questions.</p>
+
+<ol>
+  <li>Plot the distribution of sentence lengths in the English and 
+Japanese and there corrletion. What do you infer from this about 
+translating between these languages? </li>
+  <li>How many word tokens are in the English data? In the Japanese?</li>
+  <li>How many word types are in the English data? In the Japanese data?</li>
+  <li>How many word tokens will be replaced by _UNK in English? In Japanese?</li>
+  <li>Given the observations above, how do you think the NMT system will
+be affected by differences in sentence length, type/ token ratios,
+and unknown word handling? </li>
+</ol>
+
+<p><strong>Q3. [10 marks]</strong>
+What language phenomena might affect the severity of these effects?
+Any claims you make must be supported by <em>evidence</em>, in the
+form of statistics, known facts about language, and/ or examples.
+Unsupported answers will receive a mark of zero!</p>
+
+<p>In answering question 3, you may find it useful to refer to 
+<a href="http://wals.info/">The world atlas of language structures</a>.</p>
+
+<h2 id="part-2-exploring-the-model-30-marks">Part 2: Exploring the model [30 marks]</h2>
+
+<p>Let’s first explore the decoder. It makes predictions one word at a time
+from left-to-right, as you can see by examining the function <code>decoder_predict</code>
+in the file <code>enc_dec.py</code>. Prediction works by first computing a distribution
+over all possible words conditioned on the input sentence. We then choose
+the most probable word, output it, add it to the conditioning context, and
+repeat until the predicted word is an end-of-sentence token (<code>_EOS</code>).</p>
+
+<p><strong>Q4. [10 marks]</strong> Modify the <code>select_word</code> function in the decoder to <em>sample</em> from the probability 
+distribution at each time step, rather than returning the most probable word
+(this is a one-line change). Then sample a few translations for the dev data.
+These are alternatives to the one the decoder chooses. </p>
+
+<ol>
+  <li>What conclusions can you draw about the translation model based on this
+sample? Remember to support your claims with <em>examples</em>.</li>
+  <li>Return the decoder to its original state of  always choosing the 
+maximum-probability word at each
+time step. This is a greedy decoder. How would you modify this decoder
+to do beam search—that is, to consider multiple possible translations
+at each time step—as you did for a phrase-based decoder in 
+<a href="http://www.inf.ed.ac.uk/teaching/courses/mt/hw1.html">coursework 1</a>.
+<strong>NOTE</strong>: You needn’t implement beam search. The purpose of this 
+question is simply for you to think through and clearly explain how
+you would do it.</li>
+  <li>Could you implement dynamic programming for this model? Why or why not?
+Again, you needn’t implement this.</li>
+</ol>
+
+<p>The next two questions ask you to modify the model and retrain it. 
+Implementing the modifications will not take you very long, but retraining 
+the model will. </p>
+
+<p><strong>NOTE</strong>. I recommend that test your modifications by retraining
+on a small subset of the data (e.g. a thousand sentences). To do that, you should change the <code>USE_ALL_DATA</code> setting in <code>nmt_config.py</code> file to False. The results  will not be very good; your goal is simply to confirm that the change does not break the code and that it appears to behave sensibly. This is simply a sanity check, and a useful time-saving engineering test when
+you’re working with computationally expensive models like neural MT.
+For your final models, you should train on the entire training set.</p>
+
+<p><strong>Q5. [10 marks]</strong> Experiment with <em>one</em> of the following changes to the
+model, and explain how it affects the perplexity, BLEU, 
+and the actual translations your system produces, compared to the baseline
+model you were given. (In explaining the changes, be sure
+to include <em>examples</em>). Your answer should precisely specify how you
+changed the model—for example, if you change the number of layers,
+state the number you used.</p>
+
+<ol>
+  <li>Change the number of layers in the encoder, decoder, or both.</li>
+  <li>Change the number of hidden units by a substantial amount (e.g.
+by halving or doubling the number, not adding or subtracting one).</li>
+</ol>
+
+<p>To train a new model, you have to modify <code>nmt_config.py</code> with your 
+required settings - the number of layers you wish to use, layer width, 
+number of epochs and a name for your experiment.</p>
+
+<p>As an example, let’s define a new model with the size of hidden units in the 
+LSTM(s) as 100, and 2 layers for both the encoder and the decoder:</p>
+
+<pre><code># number of LSTM layers for encoder
+num_layers_enc = 2
+# number of LSTM layers for decoder
+num_layers_dec = 2
+# number of hidden units per LSTM
+# both encoder, decoder are similarly structured
+hidden_units = 100
+</code></pre>
+
+<p>And set the number of epochs equal 1 or more (otherwise the model will not train):</p>
+
+<pre><code># Training EPOCHS
+NUM_EPOCHS = 10
+</code></pre>
+
+<p>To start training a model with updated parameters execute the bash script:</p>
+
+<pre><code>./run_exp.bat 
+</code></pre>
+
+<p>After each epoch, the model file is saved to disk. The model file name 
+includes the parameters used for training. As an example, with the above 
+settings, the model and the log file names will be:</p>
+
+<pre><code>model/seq2seq_10000sen_2-2layers_100units_{EXP_NAME}_NO_ATTN.model
+model/train_10000sen_2-2layers_100units_{EXP_NAME}_NO_ATTN.log
+</code></pre>
+
+<p><strong>Q6. [10 marks]</strong> An important but simple technique for working with
+neural models is <em>dropout</em>, which must be applied in a particular way
+to our model. Implement the method of dropout described in 
+<a href="https://arxiv.org/pdf/1409.2329.pdf">this paper</a>. This change should
+require no more than one or two lines, but will test your understanding
+of the code (because you need to identify where it should go). 
+Retrain you model. How does dropout affect the results, compared to the
+baseline? As in the previous question, your answer should explain the
+changes to perplexity, BLEU, and the translations themselves. You should
+also explain where you added dropout to the code and what parameters you
+used for it.</p>
+
+<h2 id="part-3-attention-40-marks">Part 3: Attention [40 marks]</h2>
+
+<p>The last change you will implement is to augment the encoder-decoder with 
+an attention mechanism. For this, we expect you to use a very simple model
+of attention, <em>global attention with dot product</em>, as described in
+<a href="http://www.aclweb.org/anthology/D15-1166">this paper</a>. This is the simplest
+model of attention, and reasonably effective in many settings. As a practical
+matter, at each time step it requires you to take the dot product of the
+decoder hidden state with the hidden state of each input word (itself the 
+concatentation of forward and backward encoder LSTM hidden states). The
+results should be passed through the <em>softmax</em> function (i.e. exponentiated 
+and normalized) and the resulting distribution should be used to interpolate
+the input hidden states to produce a context vector used as additional
+input to the decoder.</p>
+
+<p><strong>Q7. [20 marks]</strong> Implement the attention model described above.</p>
+
+<p><strong>Q8. [10 marks]</strong> Retrain your decoder, and again explain how the change
+affects results compared to the baseline in terms of perplexity, BLEU, and
+the actual translations. </p>
+
+<p><strong>Q9. [10 marks]</strong> Visualize the evolution of the attention vectors for
+five decoded sentences, using the provided code. Do they seem reasonable?
+Why or why not?
+Base your argument in evidence from the data. You’ll need to understand the 
+Japanese words to do this effectively (use Google Translate).</p>
+
+<p>We provide a function, <code>plot_attention</code> to plot attention vectors. 
+A plot will be generated and stored in the model directory. To do this 
+set <code>plot=True</code> in the <code>predict</code> function.</p>
+
+<pre><code>_ = predict(s=10000, num=1, plot=True)
+</code></pre>
+
+<p>This will output a heatmap of the attention vectors and save the plot 
+as <code>model/sample_10000_plot.png</code></p>
+
+<p><img src="./NMT _ HW2_files/sample_10033_plot.png" class="img-responsive" alt="Responsive image"></p>
+
+<h2 id="possible-extensions">Possible Extensions</h2>
+
+<p>Neural machine translation is an extremely active area of research, and this
+coursework has only introduced the basic ideas. Now that you have a working
+encoder-decoder model with attention, you may want to experiment with it further.
+Here are some ideas.</p>
+
+<dl>
+  <dt>Minibatches</dt>
+  <dd>In lab 2 we arbitrarily picked 32 characters to be the length of the sequences we feed 
+into the model during training. In the current task, however, we are not free to do 
+so. The sequence length is fixed for each example and equals to the length of the 
+source sentence plus the length of the translation plus one (for the end-of-sentence 
+symbol). The sentences in our corpus are not of equal lengths, and therefore the 
+length of the input sequences is variable. Variable-length input is, in theory, not a 
+problem for a recurrent neural network, and both the encoder and the decoder are RNNs. 
+During training, the learning sequences can be processed individually, and the weights 
+updates after each one. In practice, training on just one sequence at a time in not 
+efficient, and it’s preferable to train on batches of examples. All sequences in a 
+batch are processed in parallel, and the weights are updated using loss information 
+from the whole batch. All inputs in a batch have to be of the same length, to take 
+advantage of operationalizing feedforward and feedback computations as matrix 
+multiplications. As we established, the lengths of our sequences are not constant, so 
+something needs to be done if we want to use a batch training approach.
+When implementing your model you will need to decide how to deal with this problem. 
+Possible solutions include:
+finding the longest training example in the corpus and pad all shorter examples to 
+its length deciding on a maximum example length, perhaps after inspecting the 
+distribution of lengths in the corpus, and truncating any examples longer that that
+creating batches by bundling sentences of the same length, to eliminate or limit 
+the extent of padding or truncating. An effective minibatch design will
+make training substantially faster, making it possible to do more experiments.</dd>
+  <dt>Understanding word embeddings</dt>
+  <dd>As a byproduct of training the translation models, we also learn 
+embeddings. This question is about exploring them to assess how well they 
+do at capturing lexical meaning, for example by  measuring 
+morphosyntactic or semantic similarity of words that have similar embeddings
+in continuous space.</dd>
+  <dt>Out-of-vocabulary words</dt>
+  <dd>I hope you found our approach to dealing with out-of-vocabulary words inelegant
+(replacing them all with <code>_UNK</code>). Consider some ways to improve
+this aspect of the model.</dd>
+</dl>
+
+<p>You can find many more ideas in the 
+<a href="https://scholar.google.co.uk/scholar?q=neural+machine+translation">recent research literature</a>.
+There are also many unsolved problems! To get some idea where they are,
+look for examples of incorrect translations. For each step in the decoder, 
+explore the probability distribution over the English vocabulary. Extract 
+the top k most probable translations and see if the correct word is amongst 
+them. How far dow the list is it? This is a way of assessing just how wrong 
+your model is. Do the same for several correctly translated sentences. In 
+this case, you want to see how peaked the probability distribution 
+is at each step in the decoder. The more peaky a distribution, the more 
+certain the model is about the choice of next output word.</p>
+
+<h2 id="ground-rules">Ground Rules</h2>
+
+<ul>
+  <li>
+    <p>You <strong>must</strong> work individually. If you submit work from someone other
+than yourself you will receive a mark of zero for the assignment.
+Your code and report must be your own work. 
+You can safely assume that your instructor has software to accurately compute
+the probability that one piece of code is a modified copy of the other.
+On the other hand, sharing 
+questions, clarifications, and ideas that stop
+short of actual answers is fine and encouraged, 
+especially through <a href="https://piazza.com/class/irvzfyo9ahs6mi">the forum</a>,
+since articulating your questions is often a good
+way to figure out what you do and don’t know.</p>
+  </li>
+  <li>You must submit these files <strong>and only these files</strong>. 
+    <ol>
+      <li><code>answers.pdf</code>: A file containing your answers to Questions 1 through 
+9 in an A4 PDF. Your file must be written in LaTeX using the overleaf template, 
+which you should clone and edit to provide your answers. Answers 
+provided in any other format will receive a mark of zero. Your 
+answers must not exceed three pages, so be concise. You are 
+permitted to include graphs or tables on an unlimited number of 
+additional pages. They should be readable. They should also be numbered and the text should refer to these numbers.</li>
+      <li><code>attention.py</code>: Your modified version of <code>enc_dec.py</code> including
+both dropout and attention (or whichever of these you complete, 
+if you don’t complete the assignment).</li>
+      <li><code>translations.txt</code>: The output of your final model on the test set. 
+Your answers to questions 8 and 9 should refer to translations in 
+this file.</li>
+    </ol>
+  </li>
+  <li>Your name <strong>must not appear in any of the submitted files</strong>. If your name
+appears in the code or pdf (or output) you will receive a mark of zero.</li>
+</ul>
+
+<p>To submit your files on dice, run:</p>
+
+<pre><code>submit mt 2 answers.pdf attention.py translations.txt
+</code></pre>
+
+<h3 id="credits">Credits</h3>
+
+<p>This assignment was developed by
+<a href="https://0xsameer.github.io/">Sameer Bansal</a> and
+<a href="https://www.inf.ed.ac.uk/people/staff/Katarzyna_Szubert.html">Ida Szubert</a>,
+with occasional meddling from <a href="https://alopez.github.io/">Adam Lopez</a>.</p>
+
+<h3 id="footnotes">Footnotes</h3>
+<div class="footnotes">
+  <ol>
+    <li id="fn:adam">
+      <p>The current favored optimizer is the excellently named <a href="https://arxiv.org/abs/1412.6980">Adam</a>. <a href="http://www.inf.ed.ac.uk/teaching/courses/mt/hw2.html#fnref:adam" class="reversefootnote">↩</a></p>
+    </li>
+    <li id="fn:autodiff">
+      <p>This may seem obvious in 2017. But less than a decade ago, automatic differentiation 
+  was so uncommon in machine learning that one researcher called it 
+  <a href="https://justindomke.wordpress.com/2009/02/17/automatic-differentiation-the-most-criminally-underused-tool-in-the-potential-machine-learning-toolbox/">the most criminally underused tool in the potential machine learning toolbox</a> <a href="http://www.inf.ed.ac.uk/teaching/courses/mt/hw2.html#fnref:autodiff" class="reversefootnote">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+          <hr>
+          <div class="text-center text-muted">
+            <small>
+              Informatics Forum, 10 Crichton Street, Edinburgh, EH8 9AB, Scotland, UK<br>
+              Tel: +44 131 651 5661, Fax: +44 131 651 1426, E-mail: 
+              school-office@inf.ed.ac.uk<br>
+              Please <a href="http://www.inf.ed.ac.uk/about/webmaster.html">contact our webadmin</a> with
+              any comments or corrections. <a style="font-weight: bold" href="http://www.inf.ed.ac.uk/about/cookies.html">Logging and Cookies</a><br>
+              Unless explicitly stated otherwise, all material is copyright ©
+              The University of Edinburgh.<br><br>
+              Material on this page is freely reuasable under a <a href="https://creativecommons.org/licenses/by/3.0/">Creative Commons attribution</a> license,<br>
+              and you are free to reuse it with appropriate credit.
+              You can get the source code on <a href="https://github.com/alopez/mt-class">github</a>.
+              
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#hw2").addClass("active");
+      $("#hw2_nb").addClass("active");
+    });
+  </script>
+
+</body></html>
